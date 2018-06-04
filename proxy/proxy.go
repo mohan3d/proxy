@@ -32,7 +32,15 @@ func headerExists(headerKey string, headers []string) bool {
 
 // AllowedHeaders returns only non-ignored headers.
 func AllowedHeaders(headers http.Header) http.Header {
-	return http.Header{}
+	h2 := make(http.Header)
+	for k, v := range headers {
+		if !headerExists(k, IgnoredHeaders) {
+			v2 := make([]string, len(v))
+			copy(v2, v)
+			h2[k] = v2
+		}
+	}
+	return h2
 }
 
 // Fetcher interface for all url fetchers

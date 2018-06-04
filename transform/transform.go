@@ -27,9 +27,20 @@ func (t CSSTransformer) Transform(html []byte) []byte {
 // AvailableTransformrs returns a list of all required transformrs
 // HTML requires (HTMLTransformer, CSSTransformer, JavaScriptTransformer)
 // CSS requires CSSTransformer
-// JavaScript requires JavaScriptTransformer
 func AvailableTransformrs(contentType byte) []Transformer {
 	var transformrs []Transformer
+
+	switch contentType {
+	case HTML:
+		transformrs = []Transformer{
+			HTMLTransformer{},
+			CSSTransformer{},
+		}
+	case CSS:
+		transformrs = []Transformer{
+			CSSTransformer{},
+		}
+	}
 	return transformrs
 }
 
