@@ -15,13 +15,13 @@ type Transformer interface {
 type HTMLTransformer struct{}
 
 func (t HTMLTransformer) Transform(html []byte) []byte {
-	return []byte("")
+	return html
 }
 
 type CSSTransformer struct{}
 
-func (t CSSTransformer) Transform(html []byte) []byte {
-	return []byte("")
+func (t CSSTransformer) Transform(css []byte) []byte {
+	return css
 }
 
 // AvailableTransformrs returns a list of all required transformrs
