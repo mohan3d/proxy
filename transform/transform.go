@@ -46,7 +46,7 @@ func AvailableTransformrs(contentType byte) []Transformer {
 
 // Transform applies available transformers on content
 // returns transformed content.
-func Transform(content []byte, contentType byte) ([]byte, error) {
+func Transform(baseURL string, accessedURL string, content []byte, contentType byte) ([]byte, error) {
 	transformers := AvailableTransformrs(contentType)
 
 	for _, transformer := range transformers {
